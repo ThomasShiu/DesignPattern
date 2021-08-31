@@ -5,7 +5,7 @@ public abstract class BeverageWithHook
     public void prepareRecipe()
     {
         boilWater();//燒開水
-        brew();//沖泡
+        brew();//沖泡(抽象方法)
         pourInCup();//倒入杯子
 
         // 加上一個判斷式, 如果客戶

@@ -6,10 +6,10 @@ namespace DesignPattern_thomas
     {
         static void Main(string[] args)
         {
-            // CoffeeTempleteMethod();
-            // TeaTempleteMethod();
+            CoffeeTempleteMethod();
+            TeaTempleteMethod();
             // CommanPattern();
-            CommanPattern1();
+            // CommanPattern1();
         }
 
         #region TempleteMethod
