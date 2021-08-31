@@ -4,4 +4,3 @@ public interface ICommand
     void ExecuteAction();
     void UndoAction();
 }
-//https://www.cnblogs.com/zhili/p/CommandPattern.html
