@@ -72,11 +72,12 @@ namespace DesignPattern_thomas
             Execute(modifyPrice, new ProductCommand(product, PriceAction.Increase, 70));
             Console.WriteLine(product);
             Console.WriteLine("====回復====");
-            modifyPrice.Undo();
-            modifyPrice.Undo();
-            modifyPrice.Undo();
-            modifyPrice.Undo();
-            modifyPrice.Undo();
+            modifyPrice.UndoAll();
+            // modifyPrice.Undo();
+            // modifyPrice.Undo();
+            // modifyPrice.Undo();
+            // modifyPrice.Undo();
+            // modifyPrice.Undo();
             Console.WriteLine(product);
         }
         private static void Execute(ModifyPrice modifyPrice, ICommand productCommand)

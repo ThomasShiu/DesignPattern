@@ -179,7 +179,12 @@ static void CommanPattern_market()
     Execute(modifyPrice, new ProductCommand(product, PriceAction.Increase, 70));
     Console.WriteLine(product);
     Console.WriteLine("====回復====");
-    modifyPrice.Undo();
+    modifyPrice.UndoAll();
+	// modifyPrice.Undo();
+	// modifyPrice.Undo();
+	// modifyPrice.Undo();
+	// modifyPrice.Undo();
+	// modifyPrice.Undo();
     Console.WriteLine(product);
 }
 private static void Execute(ModifyPrice modifyPrice, ICommand productCommand)
@@ -192,15 +197,16 @@ private static void Execute(ModifyPrice modifyPrice, ICommand productCommand)
 
 Result:
 
-    商品:[iPhone 13] , 價格=30000.
-    商品:[iPhone 13] , 價格:+ 100.
-    商品:[iPhone 13] , 價格:+ 50.
-    商品:[iPhone 13] , 價格:- 25.
-    商品:[iPhone 13] , 價格:+ 70.
-    商品:[iPhone 13] , 價格=30195.
-    ====取消命令====
-    商品:[iPhone 13] , 價格:- 70.
-    商品:[iPhone 13] , 價格:+ 25.
-    商品:[iPhone 13] , 價格:- 50.
-    商品:[iPhone 13] , 價格:- 100.
-    商品:[iPhone 13] , 價格=30000.
+	商品:[iPhone 13] , 價格=30000.
+	商品:[iPhone 13] , 價格:+ 100.
+	商品:[iPhone 13] , 價格:+ 50. 
+	商品:[iPhone 13] , 價格:- 25. 
+	商品:[iPhone 13] , 價格:+ 70. 
+	商品:[iPhone 13] , 價格=30195.
+	====回復====
+	商品:[iPhone 13] , 價格:- 100.
+	商品:[iPhone 13] , 價格:- 50. 
+	商品:[iPhone 13] , 價格:+ 25. 
+	商品:[iPhone 13] , 價格:- 70. 
+	[復原失敗] --- 查無記錄       
+	商品:[iPhone 13] , 價格=30000.
