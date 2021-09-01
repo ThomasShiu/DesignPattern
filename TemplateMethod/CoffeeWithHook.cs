@@ -3,11 +3,11 @@ public class CoffeeWithHook : BeverageWithHook
 {
     public override void brew()
     {
-        Console.WriteLine("冰滴");
+        Console.WriteLine("通過過濾器滴咖啡");
     }
     public override void addCondiments()
     {
-        Console.WriteLine("加奶精,糖");
+        Console.WriteLine("加糖,牛奶");
     }
 
     public override bool customerWantsCondiments()

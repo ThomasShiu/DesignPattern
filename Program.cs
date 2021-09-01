@@ -8,10 +8,9 @@ namespace DesignPattern_thomas
         static void Main(string[] args)
         {
             // CoffeeTempleteMethod();
-            // TeaTempleteMethod();
+            TeaTempleteMethod();
             // CommanPattern();
-            CommanPattern_market();
-            Stack<string> numbers = new Stack<string>();
+            // CommanPattern_market();
         }
 
         #region TempleteMethod
