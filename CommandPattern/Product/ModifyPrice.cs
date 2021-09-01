@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System;
 // Invoker:用來發出命令的類別
 public class ModifyPrice
 {
@@ -20,6 +21,19 @@ public class ModifyPrice
     }
 
     public void Undo()
+    {
+        try
+        {
+            var cmd = _commands[0];
+            _commands.Remove(cmd);
+            cmd.UndoAction();
+        }
+        catch
+        {
+            Console.WriteLine("[復原失敗] --- 查無記錄");
+        }
+    }
+    public void UndoAll()
     {
         // 反轉並依序取消
         foreach (var command in Enumerable.Reverse(_commands))

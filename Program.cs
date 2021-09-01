@@ -9,7 +9,7 @@ namespace DesignPattern_thomas
             // CoffeeTempleteMethod();
             // TeaTempleteMethod();
             // CommanPattern();
-            CommanPattern1();
+            CommanPattern_market();
         }
 
         #region TempleteMethod
@@ -59,11 +59,11 @@ namespace DesignPattern_thomas
             Console.WriteLine("=====================");
             Console.Read();
         }
-        static void CommanPattern1()
+        static void CommanPattern_market()
         {
-            var modifyPrice = new ModifyPrice();// 發命令物件
+            var modifyPrice = new ModifyPrice();// Invoker 發命令物件
             var CurrentPrice = 30000;
-            var product = new Product("iPhone 13", CurrentPrice);// 執行命令物件
+            var product = new Product("iPhone 13", CurrentPrice);// Reciver 執行命令物件
 
             Console.WriteLine(product);
             Execute(modifyPrice, new ProductCommand(product, PriceAction.Increase, 100));
@@ -71,7 +71,11 @@ namespace DesignPattern_thomas
             Execute(modifyPrice, new ProductCommand(product, PriceAction.Decrease, 25));
             Execute(modifyPrice, new ProductCommand(product, PriceAction.Increase, 70));
             Console.WriteLine(product);
-            Console.WriteLine("====取消命令====");
+            Console.WriteLine("====回復====");
+            modifyPrice.Undo();
+            modifyPrice.Undo();
+            modifyPrice.Undo();
+            modifyPrice.Undo();
             modifyPrice.Undo();
             Console.WriteLine(product);
         }
