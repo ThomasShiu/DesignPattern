@@ -4,7 +4,7 @@ using System;
 // Invoker:用來發出命令的類別
 public class ModifyPrice
 {
-    private readonly Stack<ICommand> _commands; //所有命令
+    private readonly Stack<ICommand> _commands; //所有命令,LIFO
     private ICommand _command;//單一命令
 
     public ModifyPrice()
