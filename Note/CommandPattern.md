@@ -43,39 +43,36 @@ public interface ICommand
 <code>
 public class ModifyPrice
 {
-    private readonly List<ICommand> _commands; //所有命令
+    private readonly Stack<ICommand> _commands; //所有命令
     private ICommand _command;//單一命令
 
     public ModifyPrice()
     {
-        _commands = new List<ICommand>();
+        _commands = new Stack<ICommand>();
     }
 
     public void SetCommand(ICommand command) => _command = command;
 
     public void Invoke()
     {
-        _commands.Add(_command);
+        _commands.Push(_command);
         _command.ExecuteAction();
     }
 
     public void Undo()
     {
-        try
-        {
-            var cmd = _commands[0];
-            _commands.Remove(cmd);
-            cmd.UndoAction();
-        }
-        catch
+        if (_commands.Count == 0)
         {
             Console.WriteLine("[復原失敗] --- 查無記錄");
+            return;
         }
+        var cmd = _commands.Pop();
+        cmd.UndoAction();
     }
     public void UndoAll()
     {
-        // 反轉並依序取消
-        foreach (var command in Enumerable.Reverse(_commands))
+        // 依序取消
+        foreach (var command in _commands)
         {
             command.UndoAction();
         }
@@ -179,12 +176,12 @@ static void CommanPattern_market()
     Execute(modifyPrice, new ProductCommand(product, PriceAction.Increase, 70));
     Console.WriteLine(product);
     Console.WriteLine("====回復====");
-    modifyPrice.UndoAll();
-	// modifyPrice.Undo();
-	// modifyPrice.Undo();
-	// modifyPrice.Undo();
-	// modifyPrice.Undo();
-	// modifyPrice.Undo();
+    //modifyPrice.UndoAll();
+    modifyPrice.Undo();
+    modifyPrice.Undo();
+    modifyPrice.Undo();
+    modifyPrice.Undo();
+    modifyPrice.Undo();
     Console.WriteLine(product);
 }
 private static void Execute(ModifyPrice modifyPrice, ICommand productCommand)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace DesignPattern_thomas
 {
@@ -10,6 +11,7 @@ namespace DesignPattern_thomas
             // TeaTempleteMethod();
             // CommanPattern();
             CommanPattern_market();
+            Stack<string> numbers = new Stack<string>();
         }
 
         #region TempleteMethod
