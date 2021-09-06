@@ -23,7 +23,7 @@
 
 	`具體的命令類別，通常持有 Receiver物件(ProductCommand)`
 
-![樣板方法](command_pattern_1.png)
+![樣板方法](./images/command_pattern_1.png)
 
 
 

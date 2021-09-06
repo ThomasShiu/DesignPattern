@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace DesignPattern_thomas
 {
@@ -8,9 +9,11 @@ namespace DesignPattern_thomas
         static void Main(string[] args)
         {
             // CoffeeTempleteMethod();
-            TeaTempleteMethod();
+            // TeaTempleteMethod();
             // CommanPattern();
             // CommanPattern_market();
+            //SignalPattern();
+            SignalPattern2();
         }
 
         #region TempleteMethod
@@ -73,18 +76,121 @@ namespace DesignPattern_thomas
             Execute(modifyPrice, new ProductCommand(product, PriceAction.Increase, 70));
             Console.WriteLine(product);
             Console.WriteLine("====回復====");
-            modifyPrice.UndoAll();
-            // modifyPrice.Undo();
-            // modifyPrice.Undo();
-            // modifyPrice.Undo();
-            // modifyPrice.Undo();
-            // modifyPrice.Undo();
+            // modifyPrice.UndoAll();
+            modifyPrice.Undo();
+            modifyPrice.Undo();
+            modifyPrice.Undo();
+            modifyPrice.Undo();
+            modifyPrice.Undo();
             Console.WriteLine(product);
         }
         private static void Execute(ModifyPrice modifyPrice, ICommand productCommand)
         {
             modifyPrice.SetCommand(productCommand);
             modifyPrice.Invoke();
+        }
+        #endregion
+        #region SignalPattern 單例模式
+        private static void SignalPattern1()
+        {
+            Console.WriteLine("請稍後四秒鐘，正在產生四個單例物件中...");
+
+            // 取得這個類別的單例物件
+            Singleton singleton1 = Singleton.Instance;
+            Thread.Sleep(1000);
+            Singleton singleton2 = Singleton.Instance;
+            Thread.Sleep(1000);
+            Singleton singleton3 = Singleton.Instance;
+            Thread.Sleep(1000);
+            Singleton singleton4 = Singleton.Instance;
+            Thread.Sleep(1000);
+
+            Console.WriteLine($"單例物件1 HashCode: {singleton1.GetHashCode()} {singleton1.GenerateTime} 的產生時間識別");
+            Console.WriteLine($"單例物件2 HashCode: {singleton2.GetHashCode()} {singleton2.GenerateTime} 的產生時間識別");
+            Console.WriteLine($"單例物件3 HashCode: {singleton3.GetHashCode()} {singleton3.GenerateTime} 的產生時間識別");
+            Console.WriteLine($"單例物件4 HashCode: {singleton4.GetHashCode()} {singleton4.GenerateTime} 的產生時間識別");
+
+            if (singleton1 == singleton2)
+            {
+                if (singleton2 == singleton3)
+                {
+                    if (singleton3 == singleton4)
+                    {
+                        Console.WriteLine($"這四個物件變數，指向同一個物件記憶體位置的單例物件");
+                    }
+                }
+            }
+
+            Console.WriteLine("Press any key for continuing...");
+            Console.ReadKey();
+        }
+        //LazySingleton
+        private static void SignalPattern2()
+        {
+            Console.WriteLine("請稍後四秒鐘，正在產生四個單例物件中...");
+
+            // 取得這個類別的單例物件
+            LazySingleton singleton1 = LazySingleton.Instance;
+            Thread.Sleep(1000);
+            LazySingleton singleton2 = LazySingleton.Instance;
+            Thread.Sleep(1000);
+            LazySingleton singleton3 = LazySingleton.Instance;
+            Thread.Sleep(1000);
+            LazySingleton singleton4 = LazySingleton.Instance;
+            Thread.Sleep(1000);
+
+            Console.WriteLine($"單例物件1 HashCode: {singleton1.GetHashCode()} {singleton1.GenerateTime} 的產生時間識別");
+            Console.WriteLine($"單例物件2 HashCode: {singleton2.GetHashCode()} {singleton2.GenerateTime} 的產生時間識別");
+            Console.WriteLine($"單例物件3 HashCode: {singleton3.GetHashCode()} {singleton3.GenerateTime} 的產生時間識別");
+            Console.WriteLine($"單例物件4 HashCode: {singleton4.GetHashCode()} {singleton4.GenerateTime} 的產生時間識別");
+
+            if (singleton1 == singleton2)
+            {
+                if (singleton2 == singleton3)
+                {
+                    if (singleton3 == singleton4)
+                    {
+                        Console.WriteLine($"這四個物件變數，指向同一個物件記憶體位置的單例物件");
+                    }
+                }
+            }
+
+            Console.WriteLine("Press any key for continuing...");
+            Console.ReadKey();
+        }
+        //SimpleThreadSafetySingleton
+        private static void SignalPattern3()
+        {
+            Console.WriteLine("請稍後四秒鐘，正在產生四個單例物件中...");
+
+            // 取得這個類別的單例物件
+            SimpleThreadSafetySingleton singleton1 = SimpleThreadSafetySingleton.Instance;
+            Thread.Sleep(1000);
+            SimpleThreadSafetySingleton singleton2 = SimpleThreadSafetySingleton.Instance;
+            Thread.Sleep(1000);
+            SimpleThreadSafetySingleton singleton3 = SimpleThreadSafetySingleton.Instance;
+            Thread.Sleep(1000);
+            SimpleThreadSafetySingleton singleton4 = SimpleThreadSafetySingleton.Instance;
+            Thread.Sleep(1000);
+
+            Console.WriteLine($"單例物件1 HashCode: {singleton1.GetHashCode()} {singleton1.GenerateTime} 的產生時間識別");
+            Console.WriteLine($"單例物件2 HashCode: {singleton2.GetHashCode()} {singleton2.GenerateTime} 的產生時間識別");
+            Console.WriteLine($"單例物件3 HashCode: {singleton3.GetHashCode()} {singleton3.GenerateTime} 的產生時間識別");
+            Console.WriteLine($"單例物件4 HashCode: {singleton4.GetHashCode()} {singleton4.GenerateTime} 的產生時間識別");
+
+            if (singleton1 == singleton2)
+            {
+                if (singleton2 == singleton3)
+                {
+                    if (singleton3 == singleton4)
+                    {
+                        Console.WriteLine($"這四個物件變數，指向同一個物件記憶體位置的單例物件");
+                    }
+                }
+            }
+
+            Console.WriteLine("Press any key for continuing...");
+            Console.ReadKey();
         }
         #endregion
     }
